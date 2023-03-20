@@ -4,7 +4,9 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default async function Protected() {
+export default function Protected() {
+    const { session, status } = useSession();
+    console.log(session, status);
     return (
         <div>
             <div>Protected</div>

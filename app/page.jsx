@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <>
             Home
-            <Link href="/login">Login</Link>
+            {/* <Link href="/login">Login</Link> */}
             {/* <Link>Sign Up</Link>
             <Link>Sign Out</Link> */}
         </>

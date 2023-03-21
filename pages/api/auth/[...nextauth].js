@@ -56,7 +56,6 @@ export const authOptions = {
         },
         session: async ({ session, user, token }) => {
             token?.user && (session.user = token.user);
-
             return session;
         },
     },

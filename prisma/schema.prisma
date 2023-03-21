@@ -64,13 +64,13 @@ model Order {
 model Product {
     id                String    @id @default(cuid())
     title             String    @unique
-    slug              String    @unique
-    description       String    @db.VarChar(10000)
-    short_description String?
+    slug              String
+    description       String    @db.VarChar(10000000)
+    short_description String?   @db.VarChar(10000000)
     price             Float
     quantity          Int
     image             String
-    specifications    String?
+    specifications    String?   @db.VarChar(10000000)
     visible           Boolean   @default(true)
     available         Boolean   @default(true)
     sale_price        Float?

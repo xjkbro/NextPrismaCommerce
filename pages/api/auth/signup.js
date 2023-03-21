@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { hash } from "bcryptjs";
 
 const handler = async (req, res) => {
+    console.log("helllo")
     if (req.method === "POST") {
         if (!req.body)
             return res.status(404).json({ error: "Don't have form data." });

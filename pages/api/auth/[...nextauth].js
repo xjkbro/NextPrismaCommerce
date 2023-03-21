@@ -24,12 +24,11 @@ export const authOptions = {
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials, req) {
-                // const { email, password } = credentials;
-                const email = "test@gmail.com";
-                const password = "123";
-
+                const { email, password } = credentials;
+                // const email = "test@gmail.com";
+                // const password = "123";
                 const user = await prisma.user.findUnique({
-                    where: { email },
+                    where: { email }
                 });
                 if (!user) {
                     throw new Error("No user found with email");

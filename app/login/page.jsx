@@ -33,9 +33,9 @@ export default function Login() {
             redirect: false,
             email: values.email,
             password: values.password,
-            callbackUrl: "/",
+            callbackUrl: "/admin",
         });
-        console.log(status)
+        console.log(status);
         if (status.ok) router.push(status.url);
     }
     return (

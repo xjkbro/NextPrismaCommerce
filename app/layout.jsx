@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+
 import AppWrapper from "@/components/AppWrapper";
 import { headers } from "next/headers";
 import { Session } from "next-auth";
@@ -10,6 +11,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
     const session = await getSession(headers().get("cookie") ?? "");
+    // console.log("Session: " + session);
     return (
         <html lang="en">
             <body>

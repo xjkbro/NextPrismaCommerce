@@ -28,7 +28,7 @@ export const authOptions = {
                 // const email = "test@gmail.com";
                 // const password = "123";
                 const user = await prisma.user.findUnique({
-                    where: { email }
+                    where: { email },
                 });
                 if (!user) {
                     throw new Error("No user found with email");
@@ -44,6 +44,23 @@ export const authOptions = {
         }),
     ],
     session: { strategy: "jwt" },
+    callbacks: {
+        redirect: async ({ url, baseUrl }) => {
+            // console.log(url, baseUrl);
+            return baseUrl;
+        },
+        jwt: async ({ token, user, account, profile, isNewUser }) => {
+            if (typeof user !== typeof undefined) token.user = user;
+
+            return token;
+        },
+        session: async ({ session, user, token }) => {
+            token?.user && (session.user = token.user);
+
+            return session;
+        },
+    },
+
     pages: {
         signIn: "/login",
     },

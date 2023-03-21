@@ -3,7 +3,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function AdminLayout({ children }) {
     const session = await getServerSession(authOptions);
-    console.log(session);
+    console.log("SESSION" + session);
     if (session) {
         return <>{children}</>;
     }

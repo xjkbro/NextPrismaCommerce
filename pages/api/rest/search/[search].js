@@ -18,6 +18,7 @@ export default async function handler(req, res) {
                     price: true,
                     image: true,
                 },
+                take: 25
             });
             res.status(200).json({ data });
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const roles = ["user", "admin", "author"];
 
-export default function UserListItem({ user, key }) {
+export default function UserListItem({ user, index }) {
     const [selectedRole, setSelectedRole] = useState(user.role);
 
     useEffect(() => {
@@ -27,12 +27,15 @@ export default function UserListItem({ user, key }) {
         }
         // console.log(updateRole());
     }, [selectedRole, user.email]);
+
     return (
-        <li className="grid grid-cols-5 py-2" key={key}>
-            <div>{user.firstname}</div>
-            <div>{user.lastname}</div>
+        <li className={`grid grid-cols-5 gap-1 p-2 py-2 ${parseInt(index)%2 > 0 ? "bg-gray-100" : ""}`} key={index}>
+            <div className="">{user.firstname}</div>
+            <div className="">{user.lastname}</div>
+            <div className="">{user.username}</div>
+            <div className="">{user.email}</div>
             <select
-                name="role"
+                 className="" name="role"
                 id="role"
                 onChange={(e) => setSelectedRole(e.target.value)}
             >
@@ -47,8 +50,6 @@ export default function UserListItem({ user, key }) {
                     </option>
                 ))}
             </select>
-            <div>{user.username}</div>
-            <div>{user.email}</div>
         </li>
     );
 }

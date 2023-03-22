@@ -1,0 +1,1 @@
+SELECT TITLE as title, DESCR as descriptions, FAKE_URL as slug, BIG_DESCR as specifications, QTY as quantity, IMAGE as image FROM `products` WHERE 1

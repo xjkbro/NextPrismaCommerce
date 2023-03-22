@@ -29,44 +29,44 @@ model Session {
     sessionToken String    @unique
     userId       String
     expires      DateTime
-    user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
     accessToken  String    @unique
     createdAt    DateTime  @default(now())
     updatedAt    DateTime? @updatedAt
+    user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
     id            String    @id @default(cuid())
-    firstname     String?
-    lastname      String?
-    company       String?
-    username      String?   @unique
     email         String?   @unique
     emailVerified DateTime?
-    password      String?
     image         String?
-    role          String    @default("user")
+    company       String?
+    firstname     String?
+    lastname      String?
+    password      String?
+    username      String?   @unique
     createdAt     DateTime  @default(now())
     updatedAt     DateTime? @updatedAt
-    posts         Post[]
+    role          String    @default("user")
     accounts      Account[]
-    sessions      Session[]
     Order         Order[]
+    posts         Post[]
+    sessions      Session[]
 }
 
 model Order {
     id          String    @id @default(cuid())
     orderNumber Int       @default(autoincrement())
-    user        User?     @relation(fields: [userId], references: [id])
     userId      String?
-    cartItems   Product[]
+    user        User?     @relation(fields: [userId], references: [id])
+    cartItems   Product[] @relation("OrderToProduct")
 }
 
 model Product {
     id                String    @id @default(cuid())
     title             String    @unique
     slug              String
-    description       String    @db.VarChar(10000000)
+    description       String?   @db.VarChar(10000000)
     short_description String?   @db.VarChar(10000000)
     price             Float
     quantity          Int
@@ -78,9 +78,9 @@ model Product {
     weight            Float     @default(1)
     averageRating     Float?
     createdAt         DateTime  @default(now())
-    category          Category? @relation(fields: [categoryId], references: [id])
     categoryId        String?
-    inOrders          Order[]
+    category          Category? @relation(fields: [categoryId], references: [id])
+    inOrders          Order[]   @relation("OrderToProduct")
 }
 
 model Category {
@@ -97,8 +97,8 @@ model Post {
     title     String
     content   String?
     published Boolean   @default(false)
-    author    User?     @relation(fields: [authorId], references: [id])
     authorId  String?
     createdAt DateTime  @default(now())
     updatedAt DateTime? @updatedAt
+    author    User?     @relation(fields: [authorId], references: [id])
 }

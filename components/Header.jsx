@@ -63,29 +63,29 @@ export default function Header({ session }) {
                         href="/products"
                     >
                         Products
-                        <div class="group-hover:block hidden top-12 left-0 absolute w-48 bg-white shadow px-6 py-8">
-                            <div class="py-1">
-                                <span class="block text-purple-500 font-bold text-base uppercase hover:text-purple-700 cursor-pointer">
+                        <div className="absolute left-0 hidden w-48 px-6 py-8 bg-white shadow group-hover:block top-12">
+                            <div className="py-1">
+                                <span className="block text-base font-bold text-purple-500 uppercase cursor-pointer hover:text-purple-700">
                                     Item
                                 </span>
                             </div>
-                            <div class="py-1">
-                                <span class="block text-purple-500 font-bold text-base uppercase hover:text-purple-700 cursor-pointer">
+                            <div className="py-1">
+                                <span className="block text-base font-bold text-purple-500 uppercase cursor-pointer hover:text-purple-700">
                                     Item 2
                                 </span>
                             </div>
-                            <div class="py-1">
-                                <span class="block text-purple-500 font-bold text-base uppercase hover:text-purple-700 cursor-pointer">
+                            <div className="py-1">
+                                <span className="block text-base font-bold text-purple-500 uppercase cursor-pointer hover:text-purple-700">
                                     Item 3
                                 </span>
                             </div>
-                            <div class="py-1">
-                                <span class="block text-purple-500 font-bold text-base uppercase hover:text-purple-700 cursor-pointer">
+                            <div className="py-1">
+                                <span className="block text-base font-bold text-purple-500 uppercase cursor-pointer hover:text-purple-700">
                                     Item 4
                                 </span>
                             </div>
-                            <div class="py-1">
-                                <span class="block text-purple-500 font-bold text-base uppercase hover:text-purple-700 cursor-pointer">
+                            <div className="py-1">
+                                <span className="block text-base font-bold text-purple-500 uppercase cursor-pointer hover:text-purple-700">
                                     Item 5
                                 </span>
                             </div>

@@ -90,8 +90,14 @@ const products = JSON.parse(
 // });
 
 
-const seedContinents = () => {
-    // adding continents to the data
+const prices = JSON.parse(
+    await readFile(
+        new URL('./productdata/update.json', import.meta.url)
+    )
+);
+
+const main = async () => {
+    await prisma.product.deleteMany();
     Promise.all(
         products.data.map(async product => {
             const response = await prisma.product.upsert({
@@ -105,14 +111,29 @@ const seedContinents = () => {
                     short_description: product.short_description,
                     specifications: product.specifications,
                     quantity: parseInt(product.quantity),
-                    image: product.image,
+                    image: (product?.image?.length > 0) ? (product.image) : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png",
                     price: 0.0
                 },
-                update: {},
+                update:{}
             });
             return response;
         })
     );
-};
-
-seedContinents();
+    Promise.all(
+        prices.data.map(async product => {
+            const response = await prisma.product.update({
+                where: {
+                    title: product.title,
+                },
+                data:{
+                    // title: product.title,
+                    price: parseFloat(product.price)
+                }
+            });
+            return response;
+        })
+    )
+}
+main().catch((err) => {
+    console.warn("Error While generating Seed: \n", err);
+});

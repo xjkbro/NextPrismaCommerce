@@ -26,7 +26,7 @@ export default function SearchBar() {
     useEffect(() => {});
     return (
         <>
-            <form className="w-1/2 flex justify-center relative">
+            <form className="relative flex justify-center w-1/2">
                 <input
                     className="w-3/5 px-1 py-2 rounded-l-md ring-1 ring-blue-500 focus:outline-none"
                     type="text"
@@ -48,24 +48,24 @@ export default function SearchBar() {
                 {/* <LiveFeed focused={focused} search={search} /> */}
 
                 {focused && search.length > 0 ? (
-                    <div className="absolute top-10 left-24 bg-gray-200 flex flex-col max-h-96 overflow-scroll w-4/6 text-gray-900">
+                    <div className="absolute flex flex-col w-4/6 overflow-scroll text-gray-900 bg-gray-200 top-10 left-24 max-h-96">
                         {searchResults.map((product, i) => (
                             <Link
                                 key={i}
-                                className="hover:bg-gray-300 p-2 flex items-center gap-2"
+                                className="flex items-center gap-2 p-2 hover:bg-gray-300"
                                 href={`/products/${product.slug}`}
                             >
                                 <Image
                                     src={product.image}
-                                    className="w-24 h-24 object-cover"
+                                    className="object-cover w-24 h-24"
                                     width={100}
                                     height={100}
                                     alt="asd"
                                 />
-                                <div className="font-semibold text-sm">
+                                <div className="text-sm font-semibold">
                                     <div>{product.title}</div>
-                                    <div className="text-xs font-normal w-5/6">
-                                        {product.short_description.substr(
+                                    <div className="w-5/6 text-xs font-normal">
+                                        {product?.short_description?.substr(
                                             0,
                                             200
                                         )}

@@ -7,17 +7,17 @@ export default async function Product({ params }) {
     const { product } = await getProduct(params.slug);
     console.log(product);
     return (
-        <div className="mt-12 w-2/3 mx-auto relative">
+        <div className="relative w-2/3 mx-auto mt-12">
             {/* <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>
             {product.description}
         </ReactMarkdown> */}
 
-            <div className="w-2/3 inline-block">
+            <div className="inline-block w-2/3">
                 <div className="grid items-center w-2/3 grid-cols-2 gap-12 my-12">
                     <div className="">
                         <Image
                             src={product.image}
-                            className="h-64 w-fit"
+                            className="object-contain h-64 w-fit"
                             width={400}
                             height={400}
                             alt={product.title}
@@ -46,17 +46,17 @@ export default async function Product({ params }) {
                     />
                 </div>
             </div>
-            <div className="w-1/4 prose outline outline-gray-300 shadow-md inline-block fixed m-8 p-4">
+            <div className="fixed inline-block w-1/4 p-4 m-8 prose shadow-md outline outline-gray-300">
                 <h1>{product.quantity} In Stock</h1>
                 <hr />
-                <div className="flex gap-2 flex-col">
-                    <button className="p-2 bg-red-600 hover:bg-red-400 transition-all text-white">
+                <div className="flex flex-col gap-2">
+                    <button className="p-2 text-white transition-all bg-red-600 hover:bg-red-400">
                         Add to Cart
                     </button>
-                    <button className="p-2 bg-red-600 hover:bg-red-400 transition-all text-white">
+                    <button className="p-2 text-white transition-all bg-red-600 hover:bg-red-400">
                         Add to Quote
                     </button>
-                    <button className="p-2 bg-red-600 hover:bg-red-400 transition-all text-white">
+                    <button className="p-2 text-white transition-all bg-red-600 hover:bg-red-400">
                         Add to List
                     </button>
                 </div>

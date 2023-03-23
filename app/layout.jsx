@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import AppWrapper from "@/components/AppWrapper";
 import { headers } from "next/headers";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default async function RootLayout({ children, params }) {
                 <AppWrapper session={session}>
                     <Header session={session}/>
                     {children}
+                    <Footer />
                 </AppWrapper>
             </body>
         </html>

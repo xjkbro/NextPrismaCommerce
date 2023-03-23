@@ -16,16 +16,14 @@ export default function ProductTable() {
     if (isLoading) return "Loading...";
     return (
         <div>
-
             {data.products.map((product, index) => (
-                <li key={index} className="grid grid-cols-4 gap-1 p-2 py-2">
-                    <strong>
-                        <Image src={product.image} width={25} height={25} className="inline object-contain w-8 h-8 rounded-full" alt={product.title} />
-                        {product.title}
-                    </strong>
+                <li key={index} className={`grid items-center grid-cols-5 gap-1 p-2 py-2 ${index%2 == 0 ? "bg-gray-200" : ""}`}>
+                    <Link className="flex items-center col-span-3 gap-2" href={`/products/${product.slug}`}>
+                            <Image src={product.image} width={25} height={25} className="inline object-contain w-8 h-8 rounded-full" alt={product.title} />
+                            <span>{product.title}</span>
+                    </Link>
                     <strong >{product.slug}</strong>
                     <strong className="w-8" >{product.price}</strong>
-                    <Link className="w-8" href={`/products/${product.slug}`}>Link</Link>
                 </li>
             ))}
             <button onClick={() => setPageIndex(pageIndex - 1)}>Previous</button>

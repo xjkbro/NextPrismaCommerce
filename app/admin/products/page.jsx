@@ -19,12 +19,11 @@ export default async function Products() {
                 </select>
             </div> */}
             <ul className="m-4">
-                <li className="grid grid-cols-4 gap-1 p-2 py-2 text-white bg-gray-600">
+                <li className="grid grid-cols-5 gap-1 p-2 py-2 text-white bg-gray-600">
                     {/* <strong>Title</strong> */}
-                    <strong>Title</strong>
+                    <strong className="col-span-3">Title</strong>
                     <strong>Slug</strong>
                     <strong className="w-8" >Price</strong>
-                    <strong className="w-8" >Link</strong>
                 </li>
                 <ProductTable/>
             </ul>

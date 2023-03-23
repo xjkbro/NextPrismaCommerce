@@ -17,9 +17,8 @@ export default async function Users() {
                 </select>
             </div>
             <ul className="m-4">
-                <li className="grid grid-cols-5 gap-1 p-2 py-2 text-white bg-gray-600">
-                    <strong>First Name</strong>
-                    <strong>Last Name</strong>
+                <li className="grid grid-cols-4 gap-1 p-2 py-2 text-white bg-gray-600">
+                    <strong>Name</strong>
                     <strong>Username</strong>
                     <strong>Email</strong>
                     <strong>Role</strong>

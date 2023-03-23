@@ -14,8 +14,8 @@ export default async function handler(req, res) {
                 orderBy: {
                     title: "asc",
                 },
-                take: 25,
-                skip: parseInt(myCursor),
+                take: 24,
+                skip: parseInt(myCursor)*24,
             });
             res.status(200).json({ products });
 

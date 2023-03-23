@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 const roles = ["user", "admin", "author"];
 
 export default function UserListItem({ user, index }) {
@@ -29,21 +31,23 @@ export default function UserListItem({ user, index }) {
     }, [selectedRole, user.email]);
 
     return (
-        <li className={`grid grid-cols-5 gap-1 p-2 py-2 ${parseInt(index)%2 > 0 ? "bg-gray-100" : ""}`} key={index}>
-            <div className="">{user.firstname}</div>
-            <div className="">{user.lastname}</div>
+        <li className={`grid grid-cols-4 gap-1 p-2 py-2 items-center ${parseInt(index)%2 > 0 ? "bg-gray-100" : ""}`} key={index}>
+            <Link href={`/admin/users/${user.id}`}>
+                <FontAwesomeIcon className="w-4 h-4 pr-2" icon={faArrowUpRightFromSquare} /> 
+                {user.firstname}{" "}{user.lastname}
+            </Link>
             <div className="">{user.username}</div>
             <div className="">{user.email}</div>
             <select
-                 className="" name="role"
+                className=""
                 id="role"
+                name="role"
                 onChange={(e) => setSelectedRole(e.target.value)}
             >
                 {roles.map((role, i) => (
                     <option
                         key={i}
                         value={role}
-                        // {...(selectedRole == role ? "selected" : "")}
                         selected={selectedRole == role}
                     >
                         {role}

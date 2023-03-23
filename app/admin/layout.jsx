@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AdminHeader from "@/components/AdminHeader";
 import AdminSidebar from "@/components/AdminSidebar";
+import {notFound} from "next/navigation"
 
 export default async function AdminLayout({ children }) {
     const { user } = await getServerSession(authOptions);
@@ -783,6 +784,8 @@ export default async function AdminLayout({ children }) {
                 </div>
             </>
         );
+    } else {
+        notFound()
+        return null
     }
-    return <p>Access Denied</p>;
 }

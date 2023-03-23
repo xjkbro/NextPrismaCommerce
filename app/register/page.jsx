@@ -21,45 +21,18 @@ export default function Login() {
         console.log(values);
         const options = {
             method: "POST",
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(values)
-        }
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signup`, options)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(values),
+        };
+        const res = await fetch(
+            `${process.env.NEXTAUTH_URL}/api/auth/signup`,
+            options
+        );
         const status = await res.json();
         if (status) router.push("/login");
     }
     return (
         <>
-            <h1>Anywhere in your app!</h1>
-            <form onSubmit={formik.handleSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    {...formik.getFieldProps("username")}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    {...formik.getFieldProps("email")}
-                />
-                <input
-                    type={`${show.password ? "text" : "password"}`}
-                    name="password"
-                    placeholder="Password"
-                    {...formik.getFieldProps("password")}
-                />
-                <input
-                    type={`${show.cpassword ? "text" : "password"}`}
-                    name="cpassword"
-                    placeholder="Confirm Password"
-                    {...formik.getFieldProps("cpassword")}
-                />
-                <button type="submit" name="submit">
-                    Login
-                </button>
-            </form>
             <div className="flex flex-wrap content-center justify-center w-full min-h-screen py-10 bg-gray-200">
                 <div className="flex shadow-md">
                     <div className="flex flex-wrap content-center justify-center rounded-l-md w-[24rem] h-[32rem]">
@@ -112,19 +85,23 @@ export default function Login() {
                                         Password
                                     </label>
                                     <input
-                                        type={`${show.password ? "text" : "password"}`}
+                                        type={`${
+                                            show.password ? "text" : "password"
+                                        }`}
                                         placeholder="********"
                                         className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                                         {...formik.getFieldProps("password")}
                                     />
                                 </div>
-                                
+
                                 <div className="mb-3">
                                     <label className="block mb-2 text-xs font-semibold">
                                         Confirm Password
                                     </label>
                                     <input
-                                        type={`${show.cpassword ? "text" : "password"}`}
+                                        type={`${
+                                            show.cpassword ? "text" : "password"
+                                        }`}
                                         placeholder="********"
                                         className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                                         {...formik.getFieldProps("cpassword")}
@@ -140,7 +117,7 @@ export default function Login() {
 
                             <div className="text-center">
                                 <span className="text-xs font-semibold text-gray-400">
-                                    Already have an account? 
+                                    Already have an account?
                                 </span>
                                 <Link
                                     href="/login"
@@ -152,8 +129,6 @@ export default function Login() {
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </>

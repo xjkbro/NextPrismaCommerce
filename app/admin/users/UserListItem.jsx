@@ -27,14 +27,22 @@ export default function UserListItem({ user, index }) {
             const data = await res.json();
             return data;
         }
-        // console.log(updateRole());
+        updateRole();
     }, [selectedRole, user.email]);
 
     return (
-        <li className={`grid grid-cols-4 gap-1 p-2 py-2 items-center ${parseInt(index)%2 > 0 ? "bg-gray-100" : ""}`} key={index}>
+        <li
+            className={`grid grid-cols-4 gap-1 p-2 py-2 items-center ${
+                parseInt(index) % 2 > 0 ? "bg-gray-100" : ""
+            }`}
+            key={index}
+        >
             <Link href={`/admin/users/${user.id}`}>
-                <FontAwesomeIcon className="w-4 h-4 pr-2" icon={faArrowUpRightFromSquare} /> 
-                {user.firstname}{" "}{user.lastname}
+                <FontAwesomeIcon
+                    className="w-4 h-4 pr-2"
+                    icon={faArrowUpRightFromSquare}
+                />
+                {user.firstname} {user.lastname}
             </Link>
             <div className="">{user.username}</div>
             <div className="">{user.email}</div>

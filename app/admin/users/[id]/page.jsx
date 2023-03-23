@@ -7,11 +7,12 @@ import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import useSWR from "swr";
 import { useFormik } from "formik";
 import { createSlug } from "@/lib/util";
-import {roles} from "@/lib/constants"
+import { roles } from "@/lib/constants";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function User({ params }) {
+    const router = useRouter();
     const { data, error, isLoading } = useSWR(
         `${process.env.NEXTAUTH_URL}/api/rest/user/${params.id}`,
         fetcher
@@ -26,9 +27,7 @@ export default function User({ params }) {
             role: data?.user.role,
         },
         onSubmit: handleSubmit,
-        
     });
-
 
     async function handleSubmit(values) {
         const res = await fetch(
@@ -46,6 +45,7 @@ export default function User({ params }) {
             }
         );
         const data = await res.json();
+        router.push(`/admin/users`);
     }
     if (error) return "An error has occurred.";
     if (isLoading) return "Loading...";
@@ -54,7 +54,11 @@ export default function User({ params }) {
             <div className="mx-auto mt-10 sm:mt-0">
                 <div className="md:grid md:grid-cols-2 md:gap-6">
                     <div className="mt-5 md:col-span-2 md:mt-0">
-                        <form action="#" method="POST" onSubmit={formik.handleSubmit}>
+                        <form
+                            action="#"
+                            method="POST"
+                            onSubmit={formik.handleSubmit}
+                        >
                             <div className="overflow-hidden shadow sm:rounded-md">
                                 <div className="px-4 py-5 bg-white sm:p-6">
                                     <div className="grid grid-cols-6 gap-6">
@@ -65,10 +69,9 @@ export default function User({ params }) {
                                             >
                                                 Username
                                             </label>
-                                            <div className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6" >
+                                            <div className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6">
                                                 {data.user.username}
                                             </div>
-
                                         </div>
                                         <div className="col-span-2">
                                             <label
@@ -77,24 +80,28 @@ export default function User({ params }) {
                                             >
                                                 Role
                                             </label>
-                                            <select 
-                                                className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+                                            <select
+                                                className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 id="role"
                                                 name="role"
-                                                {...formik.getFieldProps("role")}
+                                                {...formik.getFieldProps(
+                                                    "role"
+                                                )}
                                             >
                                                 {roles.map((role, i) => (
                                                     <option
                                                         key={i}
                                                         value={role}
                                                         // className={`${i == 0 ? "rounded-t-sm" : ""} ${i == roles.length-1 ? "rounded-b-sm" : ""}`}
-                                                        selected={formik.values.role == role}
+                                                        selected={
+                                                            formik.values
+                                                                .role == role
+                                                        }
                                                     >
                                                         {role}
                                                     </option>
                                                 ))}
                                             </select>
-
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
                                             <label
@@ -109,7 +116,9 @@ export default function User({ params }) {
                                                 id="first-name"
                                                 autoComplete="given-name"
                                                 className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                {...formik.getFieldProps("firstname")}
+                                                {...formik.getFieldProps(
+                                                    "firstname"
+                                                )}
                                             />
                                         </div>
 
@@ -126,7 +135,9 @@ export default function User({ params }) {
                                                 id="last-name"
                                                 autoComplete="family-name"
                                                 className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                {...formik.getFieldProps("lastname")}
+                                                {...formik.getFieldProps(
+                                                    "lastname"
+                                                )}
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
@@ -141,8 +152,9 @@ export default function User({ params }) {
                                                 name="company"
                                                 id="company"
                                                 className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                {...formik.getFieldProps("company")}
-
+                                                {...formik.getFieldProps(
+                                                    "company"
+                                                )}
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
@@ -158,8 +170,9 @@ export default function User({ params }) {
                                                 id="email"
                                                 autoComplete="email"
                                                 className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                {...formik.getFieldProps("email")}
-
+                                                {...formik.getFieldProps(
+                                                    "email"
+                                                )}
                                             />
                                         </div>
 

@@ -8,10 +8,6 @@ export default async function Product({ params }) {
     console.log(product);
     return (
         <div className="relative w-2/3 mx-auto mt-12">
-            {/* <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>
-            {product.description}
-        </ReactMarkdown> */}
-
             <div className="inline-block w-2/3">
                 <div className="grid items-center w-2/3 grid-cols-2 gap-12 my-12">
                     <div className="">

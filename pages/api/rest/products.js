@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 export default async function handler(req, res) {
     switch (req.method) {
         case "GET":
-            const myCursor = req.query.page ? req.query.page : "0";
+            const myCursor = req.query.page ? req.query.page : "0" ;
             const products = await prisma.product.findMany({
                 select: {
                     title: true,
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
                     title: "asc",
                 },
                 take: 24,
-                skip: parseInt(myCursor) * 24,
+                skip: parseInt(myCursor)*24,
             });
             res.status(200).json({ products });
 

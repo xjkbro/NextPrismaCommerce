@@ -6,8 +6,12 @@ const prisma = new PrismaClient();
 // import products from `./productdata/products.json` assert { type: `json` };
 // const update = require('./productdata/update.json');
 
-import { readFile } from "fs/promises";
-
+import { readFile } from 'fs/promises';
+const products = JSON.parse(
+    await readFile(
+        new URL('./productdata/products.json', import.meta.url)
+    )
+);
 // console.log(products.data[0])
 
 // const main = async () => {
@@ -72,6 +76,10 @@ import { readFile } from "fs/promises";
 
 //         });
 
+
+
+
+
 //     } catch (error) {
 //         throw error;
 //     }
@@ -81,102 +89,51 @@ import { readFile } from "fs/promises";
 //     console.warn("Error While generating Seed: \n", err);
 // });
 
-//==============================================
 
-// const products = JSON.parse(
-//     await readFile(
-//         new URL('./productdata/products.json', import.meta.url)
-//     )
-// );
-// const prices = JSON.parse(
-//     await readFile(
-//         new URL('./productdata/update.json', import.meta.url)
-//     )
-// );
-const db = JSON.parse(
-    await readFile(new URL("./productdata/new.json", import.meta.url))
-);
-const short = JSON.parse(
-    await readFile(new URL("./productdata/short.json", import.meta.url))
+const prices = JSON.parse(
+    await readFile(
+        new URL('./productdata/update.json', import.meta.url)
+    )
 );
 
 const main = async () => {
-    // await prisma.product.deleteMany();
-    // Promise.all(
-    //     db.data.map(async (product) => {
-    //         const response = await prisma.product.upsert({
-    //             where: {
-    //                 title: product.title,
-    //             },
-    //             create: {
-    //                 title: product.title,
-    //                 slug: product.slug,
-    //                 description: product.description,
-    //                 short_description: product.short_description,
-    //                 specifications: product.specifications,
-    //                 quantity: parseInt(product.quantity) + 1,
-    //                 image: product?.image
-    //                     ? product.image
-    //                     : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png",
-    //                 price: parseFloat(product.price),
-    //                 available: product.available,
-    //                 visible: product.visible,
-    //             },
-    //             update: {},
-    //         });
-    //         return response;
-    //     })
-    // );
+    await prisma.product.deleteMany();
     Promise.all(
-        short.data.map(async (product) => {
-            const response = await prisma.product.update({
+        products.data.map(async product => {
+            const response = await prisma.product.upsert({
                 where: {
                     title: product.title,
                 },
-                data: {
+                create: {
                     title: product.title,
+                    slug: product.slug,
+                    description: product.description,
                     short_description: product.short_description,
+                    specifications: product.specifications,
+                    quantity: parseInt(product.quantity),
+                    image: (product?.image?.length > 0) ? (product.image) : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png",
+                    price: 0.0
                 },
+                update:{}
             });
             return response;
         })
     );
-    // Promise.all(
-    //     products.data.map(async product => {
-    //         const response = await prisma.product.upsert({
-    //             where: {
-    //                 title: product.title,
-    //             },
-    //             create: {
-    //                 title: product.title,
-    //                 slug: product.slug,
-    //                 description: product.description,
-    //                 short_description: product.short_description,
-    //                 specifications: product.specifications,
-    //                 quantity: parseInt(product.quantity),
-    //                 image: (product?.image?.length > 0) ? (product.image) : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png",
-    //                 price: 0.0
-    //             },
-    //             update:{}
-    //         });
-    //         return response;
-    //     })
-    // );
-    // Promise.all(
-    //     prices.data.map(async product => {
-    //         const response = await prisma.product.update({
-    //             where: {
-    //                 title: product.title,
-    //             },
-    //             data:{
-    //                 // title: product.title,
-    //                 price: parseFloat(product.price)
-    //             }
-    //         });
-    //         return response;
-    //     })
-    // )
-};
+    Promise.all(
+        prices.data.map(async product => {
+            const response = await prisma.product.update({
+                where: {
+                    title: product.title,
+                },
+                data:{
+                    // title: product.title,
+                    price: parseFloat(product.price)
+                }
+            });
+            return response;
+        })
+    )
+}
 main().catch((err) => {
     console.warn("Error While generating Seed: \n", err);
 });

@@ -2,10 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import SearchBar from "./SearchBar";
 
 export default function Header({ session }) {
+    const { status } = useSession();
     const currentPage = usePathname();
 
     if (

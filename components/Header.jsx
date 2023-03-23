@@ -4,33 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
 import SearchBar from "./SearchBar";
-import { parseUrl, fetcher } from "@/lib/util";
-import useSWR from "swr";
-
 export default function Header({ session }) {
     const { status } = useSession();
-    const currentPage = usePathname();
-    // const { path, slug } = parseUrl(usePathname());
 
-    // const { data, error, isLoading } = useSWR(
-    //     `${process.env.NEXTAUTH_URL}/api/rest/product/${slug}`,
-    //     fetcher
-    // );
-
-    // if (error) return "An error has occurred.";
-    // if (isLoading) return "Loading...";
-
-    if (
-        currentPage.includes("/admin") ||
-        currentPage.includes("/login") ||
-        currentPage.includes("/register")
-    )
-        return <></>;
+    if (usePathname().includes("/admin")) return <></>;
     return (
         <>
             {session?.user?.role == "admin" ? (
-                <div className="flex justify-between w-full p-1 text-white bg-neutral-900 h-fit">
-                    {/* <Link href="/admin/">Admin Dashboard</Link> */}
+                <div className="flex justify-end w-full p-1 text-white bg-neutral-900 h-fit">
                     <Link href="/admin">Admin Dashboard</Link>
                 </div>
             ) : (

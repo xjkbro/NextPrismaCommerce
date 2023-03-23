@@ -29,30 +29,22 @@ export default async function Product({ params }) {
                         <h2>${product.price}</h2>
                     </div>
                 </div>
-                {product.description ? (
-                    <div className="mx-auto prose">
-                        <h1>Description</h1>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: product.description,
-                            }}
-                        />
-                    </div>
-                ) : (
-                    <></>
-                )}
-                {product.description ? (
-                    <div className="mx-auto prose">
-                        <h1>Specifications</h1>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: product.specifications,
-                            }}
-                        />
-                    </div>
-                ) : (
-                    <></>
-                )}
+                <div className="mx-auto prose">
+                    <h1>Description</h1>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: product.description,
+                        }}
+                    />
+                </div>
+                <div className="mx-auto prose">
+                    <h1>Specifications</h1>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: product.specifications,
+                        }}
+                    />
+                </div>
             </div>
             <div className="fixed inline-block w-1/4 p-4 m-8 prose shadow-md outline outline-gray-300">
                 <h1>{product.quantity} In Stock</h1>

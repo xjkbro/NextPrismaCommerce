@@ -5,8 +5,8 @@ export default async function handler(req, res) {
         case "GET":
             const product = await prisma.product.findFirst({
                 where: {
-                    slug: req.query.slug
-                }
+                    slug: req.query.slug,
+                },
             });
             res.status(200).json({ product });
 

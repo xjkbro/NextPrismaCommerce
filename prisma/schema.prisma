@@ -65,7 +65,7 @@ model Order {
 model Product {
     id                String    @id @default(cuid())
     title             String    @unique
-    slug              String
+    slug              String    @unique
     description       String?   @db.VarChar(10000000)
     short_description String?   @db.VarChar(10000000)
     price             Float

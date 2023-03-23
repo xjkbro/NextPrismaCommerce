@@ -30,7 +30,6 @@ export const secondarySidebarLinks = [
 ];
 
 export default function AdminSidebar() {
-    console.log(typeof secondarySidebarLinks[0].path);
     return (
         <aside
             id="sidebar"
@@ -48,7 +47,7 @@ export default function AdminSidebar() {
                                     className="lg:hidden"
                                 >
                                     <label
-                                        for="mobile-search"
+                                        htmlFor="mobile-search"
                                         className="sr-only"
                                     >
                                         Search

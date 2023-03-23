@@ -45,9 +45,10 @@ export default function AdminHeader() {
                         >
                             <Image
                                 src="https://demo.themesberg.com/windster/images/logo.svg"
-                                className="h-6 mr-2"
+                                className="h-6 w-auto mr-2"
                                 width={100}
                                 height={100}
+                                priority
                                 alt="Windster Logo"
                             />
                             <span className="self-center whitespace-nowrap">
@@ -59,7 +60,7 @@ export default function AdminHeader() {
                             method="GET"
                             className="hidden lg:block lg:pl-32"
                         >
-                            <label for="topbar-search" className="sr-only">
+                            <label htmlFor="topbar-search" className="sr-only">
                                 Search
                             </label>
                             <div className="relative mt-1 lg:w-64">

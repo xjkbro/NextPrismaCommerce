@@ -17,14 +17,15 @@ export default function User({ params }) {
         `${process.env.NEXTAUTH_URL}/api/rest/user/${params.id}`,
         fetcher
     );
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            firstname: data?.user.firstname,
-            lastname: data?.user.lastname,
-            email: data?.user.email,
-            company: data?.user.company,
-            role: data?.user.role,
+            firstname: data?.user.firstname ? data?.user.firstname : "",
+            lastname: data?.user.lastname ? data?.user.lastname : "",
+            email: data?.user.email ? data?.user.email : "",
+            company: data?.user.company ? data?.user.company : "",
+            role: data?.user.role ? data?.user.role : "",
         },
         onSubmit: handleSubmit,
     });
@@ -92,11 +93,6 @@ export default function User({ params }) {
                                                     <option
                                                         key={i}
                                                         value={role}
-                                                        // className={`${i == 0 ? "rounded-t-sm" : ""} ${i == roles.length-1 ? "rounded-b-sm" : ""}`}
-                                                        selected={
-                                                            formik.values
-                                                                .role == role
-                                                        }
                                                     >
                                                         {role}
                                                     </option>

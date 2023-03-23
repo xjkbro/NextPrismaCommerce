@@ -50,14 +50,11 @@ export default function UserListItem({ user, index }) {
                 className=""
                 id="role"
                 name="role"
+                defaultValue={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
             >
                 {roles.map((role, i) => (
-                    <option
-                        key={i}
-                        value={role}
-                        selected={selectedRole == role}
-                    >
+                    <option key={i} value={role}>
                         {role}
                     </option>
                 ))}

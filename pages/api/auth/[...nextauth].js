@@ -58,25 +58,25 @@ export const authOptions = {
             token?.user && (session.user = token.user);
             return session;
         },
-        async signIn({ user, account, profile, email, credentials }) {
-            // console.log({ user, account, profile, email, credentials });
-            console.log(user);
-            // const isAllowedToSignIn = true;
-            // if (isAllowedToSignIn) {
-            //     return true;
-            // } else {
-            //     // Return false to display a default error message
-            //     return false;
-            //     // Or you can return a URL to redirect to:
-            //     // return '/unauthorized'
-            // }
-            if (user.role == "admin")
-                return `${process.env.NEXTAUTH_URL}/admin`;
-            else {
-                if (user) return true;
-                else return false;
-            }
-        },
+        // async signIn({ user, account, profile, email, credentials }) {
+        //     // console.log({ user, account, profile, email, credentials });
+        //     console.log(user);
+        //     // const isAllowedToSignIn = true;
+        //     // if (isAllowedToSignIn) {
+        //     //     return true;
+        //     // } else {
+        //     //     // Return false to display a default error message
+        //     //     return false;
+        //     //     // Or you can return a URL to redirect to:
+        //     //     // return '/unauthorized'
+        //     // }
+        //     if (user?.role == "admin")
+        //         return `${process.env.NEXTAUTH_URL}/admin`;
+        //     else {
+        //         if (user) return true;
+        //         else return false;
+        //     }
+        // },
     },
 
     pages: {

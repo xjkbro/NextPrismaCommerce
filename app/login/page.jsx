@@ -86,7 +86,7 @@ export default function Login() {
                                         className="mr-1 checked:bg-purple-700"
                                     />{" "}
                                     <label
-                                        for="remember"
+                                        htmlFor="remember"
                                         className="mr-auto text-xs font-semibold"
                                     >
                                         Remember for 30 days
@@ -137,6 +137,7 @@ export default function Login() {
                             width={1200}
                             height={800}
                             alt="cat"
+                            priority
                             src="https://images.unsplash.com/photo-1659460542526-35b3257e1152?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2200&q=80"
                             // src="https://i.imgur.com/9l1A4OS.jpeg"
                         />

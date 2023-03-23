@@ -35,7 +35,7 @@ export default function Login() {
         <>
             <div className="flex flex-wrap content-center justify-center w-full min-h-screen py-10 bg-gray-200">
                 <div className="flex shadow-md">
-                    <div className="flex flex-wrap content-center justify-center rounded-l-md w-[24rem] h-[32rem]">
+                    <div className="hidden md:flex flex-wrap content-center justify-center rounded-l-md w-[30rem] min-h-[32rem]">
                         <Image
                             className="w-full h-full object-cover object-[25%] bg-no-repeat bg-cover rounded-l-md"
                             width={1200}
@@ -44,8 +44,17 @@ export default function Login() {
                             src="https://images.unsplash.com/photo-1659460542526-35b3257e1152?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2200&q=80"
                         />
                     </div>
-                    <div className="flex flex-wrap content-center justify-center rounded-r-md bg-white w-[24rem] h-[32rem]">
+                    <div className="flex flex-wrap content-center justify-center rounded-md md:rounded-r-md bg-white w-[24rem] min-h-[40rem]">
                         <div className="w-72">
+                            <Link href="/">
+                                <Image
+                                    src="/logo-1200x500.png"
+                                    width={480}
+                                    height={200}
+                                    className="w-96 object-contain"
+                                    alt="logo"
+                                />
+                            </Link>
                             <h1 className="text-xl font-semibold">
                                 Welcome to NextPrismaCommerce!
                             </h1>

@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,6 +25,7 @@ export default function Login() {
             callbackUrl: "/admin",
         });
         console.log(status);
+
         if (status.ok) router.push(status.url);
     }
     return (
@@ -32,8 +33,17 @@ export default function Login() {
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
                 {/*  */}
                 <div className="flex shadow-md">
-                    <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white w-[24rem] h-[32rem]">
+                    <div className="flex flex-wrap content-center justify-center rounded-md md:rounded-l-md bg-white w-[24rem] h-[32rem]">
                         <div className="w-72">
+                            <Link href="/">
+                                <Image
+                                    src="/logo-1200x500.png"
+                                    width={480}
+                                    height={200}
+                                    className="w-96 object-contain"
+                                    alt="logo"
+                                />
+                            </Link>
                             <h1 className="text-xl font-semibold">
                                 Welcome back
                             </h1>
@@ -121,7 +131,7 @@ export default function Login() {
                         </div>
                     </div>
 
-                    <div className="flex flex-wrap content-center justify-center rounded-r-md w-[24rem] h-[32rem]">
+                    <div className="hidden md:flex flex-wrap content-center justify-center rounded-r-md w-[24rem] h-[32rem]">
                         <Image
                             className="w-full h-full object-cover object-[25%] bg-no-repeat bg-cover rounded-r-md"
                             width={1200}

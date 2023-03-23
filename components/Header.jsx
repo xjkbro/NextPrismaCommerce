@@ -40,9 +40,10 @@ export default function Header({ session }) {
                 <div>
                     <Link href="/">
                         <Image
-                            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-                            width={50}
-                            height={50}
+                            src="/logo-1200x500.png"
+                            width={240}
+                            height={100}
+                            className="w-40 object-contain"
                             alt="logo"
                         />
                     </Link>

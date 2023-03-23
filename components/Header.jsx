@@ -2,23 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import SearchBar from "./SearchBar";
-import { parseUrl, fetcher } from "@/lib/util";
-import useSWR from "swr";
 
 export default function Header({ session }) {
-    const { status } = useSession();
     const currentPage = usePathname();
-    // const { path, slug } = parseUrl(usePathname());
-
-    // const { data, error, isLoading } = useSWR(
-    //     `${process.env.NEXTAUTH_URL}/api/rest/product/${slug}`,
-    //     fetcher
-    // );
-
-    // if (error) return "An error has occurred.";
-    // if (isLoading) return "Loading...";
 
     if (
         currentPage.includes("/admin") ||
